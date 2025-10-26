@@ -28,10 +28,17 @@ function editTask(event, task) {
 }
 
 function deleteTask(event, task) {
-  alert("Delete task clicked");
+  const taskIndex = tasks.findIndex((taskItem) => task.id == taskItem.id);
+  tasks.splice(taskIndex, 1);
+  renderTasks();
 }
 
-tasks.forEach((task) => {
+function renderTasks() {
   const taskList = document.querySelector("#tasks");
-  taskList.append(new TaskCard(task, editTask, deleteTask).render());
-});
+  Array.from(taskList.children).forEach((task) => task.remove());
+  tasks.forEach((task) => {
+    taskList.append(new TaskCard(task, editTask, deleteTask).render());
+  });
+}
+
+renderTasks();

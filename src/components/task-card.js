@@ -25,7 +25,7 @@ export class TaskCard {
   }
 
   onDelete(e) {
-    this.onEditCallback(e, this.taskRepr());
+    this.onDeleteCallback(e, this.taskRepr());
   }
 
   render() {
