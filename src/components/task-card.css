@@ -6,6 +6,7 @@
   margin: 0.2em;
   gap: 0.5em;
   align-items: center;
+  border-radius: 5px;
 }
 
 .checkbox {
@@ -25,4 +26,32 @@
 
 .task input[type="date"] {
   font-size: 1.2em;
+}
+
+.delete-button {
+  /* appearance: none; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  outline: none;
+  border: none;
+  border-radius: 0.2em;
+  appearance: none;
+  background-color: #ffa79674;
+}
+
+.delete-button svg {
+  height: 60%;
+  width: 60%;
+  fill: #9b1313b6;
+}
+
+.delete-button:hover {
+  box-shadow: 1px 1px 3px #cd1c18;
+}
+
+.task:hover {
+  box-shadow: 1px 1px 3px gray;
 }
