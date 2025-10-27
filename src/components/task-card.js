@@ -72,6 +72,7 @@ export class TaskCard {
     inputElement.type = "date";
     inputElement.name = "due-date";
     inputElement.id = "due-date";
+    inputElement.value = this.dueDate;
     inputElement.addEventListener("change", (e) => {
       this.dueDate = e.target.value;
       this.onEdit(e);

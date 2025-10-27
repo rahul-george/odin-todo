@@ -22,3 +22,7 @@
 .task-title:focus {
   border-bottom: 1px solid green;
 }
+
+.task input[type="date"] {
+  font-size: 1.2em;
+}
