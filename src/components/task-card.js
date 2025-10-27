@@ -40,7 +40,7 @@ export class TaskCard {
     task_card.appendChild(this.renderCheckbox());
     task_card.appendChild(this.renderTitle());
     task_card.appendChild(this.renderDate());
-    task_card.appendChild(this.renderEditButton());
+    // task_card.appendChild(this.renderEditButton());
     task_card.appendChild(this.renderDeleteButton());
     return task_card_fragment;
   }
