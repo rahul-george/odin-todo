@@ -59,6 +59,7 @@ export class TaskCard {
     inputElement.name = "title";
     inputElement.id = "title";
     inputElement.value = this.title;
+    inputElement.classList.add("task-title");
     inputElement.addEventListener("change", (e) => {
       this.title = e.target.value;
       this.onEdit(e);

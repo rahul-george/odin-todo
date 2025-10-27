@@ -13,7 +13,12 @@
   width: 1.2em;
 }
 
-.task input[type="text"] {
+.task-title {
   outline: none;
   border: none;
+  font-size: 1.2em;
+}
+
+.task-title:focus {
+  border-bottom: 1px solid green;
 }
