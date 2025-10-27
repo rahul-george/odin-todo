@@ -1,3 +1,6 @@
+import "./task-card.css";
+import { Checkbox } from "./checkbox/checkbox";
+
 export class TaskCard {
   constructor(task, onEditCallback, onDeleteCallback) {
     /*
@@ -43,18 +46,11 @@ export class TaskCard {
   }
 
   renderCheckbox() {
-    const inputElement = document.createElement("input");
-    inputElement.type = "checkbox";
-    inputElement.name = "status";
-    inputElement.id = "status";
-    if (this.isCompleted) {
-      inputElement.checked = true;
-    }
-    inputElement.addEventListener("change", (e) => {
+    const checkbox = new Checkbox(this.isCompleted, (e) => {
       this.isCompleted = e.target.checked;
       this.onEdit(e);
     });
-    return inputElement;
+    return checkbox.render();
   }
 
   renderTitle() {

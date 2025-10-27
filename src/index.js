@@ -6,7 +6,7 @@ const tasks = [
     id: 1,
     title: "Item 1",
     dueDate: "",
-    isCompleted: false,
+    isCompleted: true,
   },
   {
     id: 2,
@@ -25,6 +25,7 @@ const tasks = [
 function editTask(event, task) {
   const taskIndex = tasks.findIndex((taskItem) => task.id == taskItem.id);
   tasks.splice(taskIndex, 1, task);
+  renderTasks();
 }
 
 function deleteTask(event, task) {
