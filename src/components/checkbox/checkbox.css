@@ -1,0 +1,36 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  border-radius: 50%;
+  border: 2px solid gray;
+}
+
+.checkbox:has(> .checkbox-input:checked) {
+  border: 2px solid rgb(120, 182, 27);
+}
+
+.checkbox-input {
+  /* border: none; */
+  vertical-align: middle;
+  opacity: 0%;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.checkmark {
+  background-color: white;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  fill: rgb(120, 182, 27);
+}
+
+.hidden {
+  visibility: hidden;
+}
