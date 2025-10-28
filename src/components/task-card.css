@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: row nowrap;
   padding: 0.5em;
-  border: 1px solid gray;
+  border: 1px solid rgba(128, 128, 128, 0.451);
   margin: 0.2em;
   gap: 0.5em;
   align-items: center;
