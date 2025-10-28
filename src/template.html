@@ -12,17 +12,16 @@
   <body>
     <header>TodoApp</header>
     <nav>
-      <ul>
-        <li><button type="button">Add Task</button></li>
-        <li><button type="button">Today</button></li>
-        <li><button type="button">Inbox</button></li>
-      </ul>
-
+      <section class="task-action-group">
+        <button type="button" class="action-buttons">Add Task</button>
+        <button type="button" class="action-buttons">Today</button>
+        <button type="button" class="action-buttons">Inbox</button>
+      </section>
       <label for="projects">Projects</label>
-      <ul id="projects">
-        <li><button type="button">Home</button></li>
-        <li><button type="button">Groceries</button></li>
-      </ul>
+      <section class="task-action-group">
+        <button type="button" class="action-buttons">Home</button>
+        <button type="button" class="action-buttons">Groceries</button>
+      </section>
     </nav>
     <main>
       <div id="tasks"></div>
