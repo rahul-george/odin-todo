@@ -8,6 +8,7 @@
   align-items: center;
   border-radius: 5px;
   width: max-content;
+  position: relative;
 }
 
 .checkbox {
@@ -42,6 +43,9 @@
   border-radius: 0.2em;
   appearance: none;
   background-color: #ffa79674;
+  visibility: hidden;
+  position: absolute;
+  right: 20px;
 }
 
 .delete-button svg {
@@ -56,4 +60,16 @@
 
 .task:hover {
   box-shadow: 1px 1px 3px gray;
+}
+
+.task:hover .delete-button {
+  visibility: visible;
+}
+
+/* input[type="date"]:has(~ .delete-button:hover) {
+  opacity: 30%;
+} */
+
+.task:hover input[type="date"] {
+  opacity: 30%;
 }
