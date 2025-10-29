@@ -1,11 +1,14 @@
 import "./styles.css";
 import { TaskCard } from "./components/task-card";
 import { format, isMatch } from "date-fns";
+import { filterByToday, filterByInbox } from "./filterMethods";
 
 function today() {
   const today = new Date();
   return format(today, "yyyy-MM-dd");
 }
+
+const filters = [];
 
 const tasks = [
   {
@@ -43,34 +46,29 @@ function deleteTask(event, task) {
 function renderTasks() {
   const taskList = document.querySelector("#tasks");
   Array.from(taskList.children).forEach((task) => task.remove());
-  tasks.forEach((task) => {
-    console.log(task);
+
+  const filteredTasks = filters.reduce(
+    (filteredTasks, fn) => fn(filteredTasks),
+    tasks
+  );
+
+  filteredTasks.forEach((task) => {
     taskList.append(new TaskCard(task, editTask, deleteTask).render());
   });
 }
 
-function renderTasksForToday(e) {
-  const taskList = document.querySelector("#tasks");
-  Array.from(taskList.children).forEach((task) => task.remove());
-  tasks.forEach((task) => {
-    if (isMatch(task.dueDate, format(new Date(), "yyyy-MM-dd")))
-      taskList.append(new TaskCard(task, editTask, deleteTask).render());
-  });
-}
-
-function renderTasksForInbox(e) {
-  const taskList = document.querySelector("#tasks");
-  Array.from(taskList.children).forEach((task) => task.remove());
-  tasks.forEach((task) => {
-    if (isMatch(task.dueDate, ""))
-      taskList.append(new TaskCard(task, editTask, deleteTask).render());
-  });
-}
-
 const tasksTodayFilter = document.querySelector("#filter-tasks-today");
-tasksTodayFilter.addEventListener("click", renderTasksForToday);
+tasksTodayFilter.addEventListener("click", (e) => {
+  filters.splice(0);
+  filters.push(filterByToday);
+  renderTasks();
+});
 
 const tasksInboxFilter = document.querySelector("#filter-tasks-inbox");
-tasksInboxFilter.addEventListener("click", renderTasksForInbox);
+tasksInboxFilter.addEventListener("click", (e) => {
+  filters.splice(0);
+  filters.push(filterByInbox);
+  renderTasks();
+});
 
 renderTasks();
