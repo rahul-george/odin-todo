@@ -11,6 +11,7 @@ export class TaskCard {
     this.title = task.title;
     this.dueDate = task.dueDate;
     this.isCompleted = task.isCompleted;
+    this.project = task.project;
     this.onEditCallback = onEditCallback;
     this.onDeleteCallback = onDeleteCallback;
   }
@@ -21,6 +22,7 @@ export class TaskCard {
       title: this.title,
       dueDate: this.dueDate,
       isCompleted: this.isCompleted,
+      project: this.project,
     };
   }
 
