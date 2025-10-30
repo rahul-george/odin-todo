@@ -10,4 +10,4 @@ function filterByProject(project) {
   return (tasks) => tasks.filter((task) => task.project === project);
 }
 
-export { filterByToday, filterByInbox, filterByProject };
+export { filterByToday, filterByProject };
