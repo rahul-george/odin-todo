@@ -5,8 +5,9 @@ function filterByToday(tasks) {
   return tasks.filter((task) => isMatch(task.dueDate, today));
 }
 
-function filterByInbox(tasks) {
-  return tasks.filter((task) => isMatch(task.dueDate, ""));
+function filterByProject(project) {
+  if (!project) console.error("Project is", project);
+  return (tasks) => tasks.filter((task) => task.project === project);
 }
 
-export { filterByToday, filterByInbox };
+export { filterByToday, filterByInbox, filterByProject };

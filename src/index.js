@@ -1,7 +1,7 @@
 import "./styles.css";
 import { TaskCard } from "./components/task-card";
-import { format, isMatch } from "date-fns";
-import { filterByToday, filterByInbox } from "./filterMethods";
+import { format } from "date-fns";
+import { filterByToday, filterByProject } from "./filterMethods";
 
 function today() {
   const today = new Date();
@@ -16,24 +16,28 @@ const tasks = [
     title: "Item 1",
     dueDate: today(),
     isCompleted: true,
+    project: "Inbox",
   },
   {
     id: 2,
     title: "Item 2",
     dueDate: "",
     isCompleted: false,
+    project: "Inbox",
   },
   {
     id: 3,
     title: "Item 3",
     dueDate: "",
     isCompleted: false,
+    project: "Inbox",
   },
 ];
 
 function editTask(event, task) {
   const taskIndex = tasks.findIndex((taskItem) => task.id == taskItem.id);
   tasks.splice(taskIndex, 1, task);
+  console.log(tasks);
   renderTasks();
 }
 
@@ -67,7 +71,7 @@ tasksTodayFilter.addEventListener("click", (e) => {
 const tasksInboxFilter = document.querySelector("#filter-tasks-inbox");
 tasksInboxFilter.addEventListener("click", (e) => {
   filters.splice(0);
-  filters.push(filterByInbox);
+  filters.push(filterByProject("Inbox"));
   renderTasks();
 });
 
