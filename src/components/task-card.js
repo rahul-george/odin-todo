@@ -3,7 +3,7 @@ import { Checkbox } from "./checkbox/checkbox";
 import deleteIconSvg from "./deleteIcon.svg";
 
 export class TaskCard {
-  constructor(task, onEditCallback, onDeleteCallback) {
+  constructor(task, updateTask, deleteTask) {
     /*
         @param: task is an object
         */
@@ -12,8 +12,8 @@ export class TaskCard {
     this.dueDate = task.dueDate;
     this.isCompleted = task.isCompleted;
     this.project = task.project;
-    this.onEditCallback = onEditCallback;
-    this.onDeleteCallback = onDeleteCallback;
+    this.onEditCallback = updateTask;
+    this.onDeleteCallback = deleteTask;
   }
 
   taskRepr() {
@@ -31,12 +31,13 @@ export class TaskCard {
   }
 
   onDelete(e) {
-    this.onDeleteCallback(e, this.taskRepr());
+    this.onDeleteCallback(this.id);
   }
 
   render() {
     const task_card_fragment = document.createDocumentFragment();
     const task_card = document.createElement("div");
+    task_card.dataset.taskId = this.id;
     task_card.classList.add("task");
     task_card_fragment.appendChild(task_card);
 
@@ -51,7 +52,7 @@ export class TaskCard {
   renderCheckbox() {
     const checkbox = new Checkbox(this.isCompleted, (e) => {
       this.isCompleted = e.target.checked;
-      this.onEdit(e);
+      this.onEditCallback(this.taskRepr());
     });
     return checkbox.render();
   }
@@ -65,7 +66,7 @@ export class TaskCard {
     inputElement.classList.add("task-title");
     inputElement.addEventListener("change", (e) => {
       this.title = e.target.value;
-      this.onEdit(e);
+      this.onEditCallback(this.taskRepr());
     });
     return inputElement;
   }
@@ -78,7 +79,7 @@ export class TaskCard {
     inputElement.value = this.dueDate;
     inputElement.addEventListener("change", (e) => {
       this.dueDate = e.target.value;
-      this.onEdit(e);
+      this.onEditCallback(this.taskRepr());
     });
     return inputElement;
   }
@@ -98,7 +99,7 @@ export class TaskCard {
     inputElement.type = "button";
     inputElement.classList.add("delete-button");
     inputElement.name = "delete-task-button";
-    inputElement.innerHTML = `<svg fill="red" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+    inputElement.innerHTML = `<svg fill="red" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 	 width="40px" height="40px" viewBox="0 0 372.693 372.693"
 	 xml:space="preserve">
 <g>

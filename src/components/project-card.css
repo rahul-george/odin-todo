@@ -1,0 +1,13 @@
+.project-card {
+    appearance: none;
+    border: none;
+    padding: 0.2rem;
+    background-color: white;
+    text-align: start;
+    border-radius: 0.2rem;
+}
+
+.project-card:hover {
+    background-color: #ffa79674;
+    color: #cd1c18;
+}

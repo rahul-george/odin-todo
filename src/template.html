@@ -1,34 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="A todo app created as part of the Odin Project"
-    />
-    <title>Todo App</title>
-  </head>
-  <body>
-    <header>TodoApp</header>
-    <nav>
-      <section class="task-action-group">
-        <button type="button" class="action-buttons">Add Task</button>
-        <button type="button" class="action-buttons" id="filter-tasks-today">
-          Today
-        </button>
-        <button type="button" class="action-buttons" id="filter-tasks-inbox">
-          Inbox
-        </button>
-      </section>
-      <label for="projects">Projects</label>
-      <section class="task-action-group">
-        <button type="button" class="action-buttons">Home</button>
-        <button type="button" class="action-buttons">Groceries</button>
-      </section>
-    </nav>
-    <main>
-      <div id="tasks"></div>
-    </main>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="A todo app created as part of the Odin Project"
+        />
+        <title>Todo App</title>
+    </head>
+    <body>
+        <header>TodoApp</header>
+        <nav>
+            <section class="task-action-group">
+                <button type="button" class="action-buttons">Add Task</button>
+                <button
+                    type="button"
+                    class="action-buttons"
+                    id="filter-tasks-today"
+                >
+                    Today
+                </button>
+                <button
+                    type="button"
+                    class="action-buttons"
+                    id="filter-tasks-inbox"
+                >
+                    Inbox
+                </button>
+            </section>
+            <label for="projects">Projects</label>
+            <section class="task-action-group">
+                <div id="projects">
+                    <button type="button" class="action-buttons">Home</button>
+                    <button type="button" class="action-buttons">
+                        Groceries
+                    </button>
+                </div>
+            </section>
+        </nav>
+        <main>
+            <div id="tasks">
+                <!--Card is only a representation of a task. If I put the render method inside the card class, It will take more memory for each card object? Or should I create a function to render the card?-->
+            </div>
+        </main>
+    </body>
 </html>

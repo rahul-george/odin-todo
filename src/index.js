@@ -1,78 +1,66 @@
 import "./styles.css";
-import { TaskCard } from "./components/task-card";
+// import { TaskCard } from "./components/task-card";
+
+// import { filterByToday, filterByProject } from "./filterMethods";
+
+import {
+  initializeApp,
+  renderTasksByProject,
+  renderTasksByDate,
+} from "./commands";
 import { format } from "date-fns";
-import { filterByToday, filterByProject } from "./filterMethods";
 
-function today() {
-  const today = new Date();
-  return format(today, "yyyy-MM-dd");
-}
+// function editTask(event, task) {
+//   const taskIndex = tasks.findIndex((taskItem) => task.id == taskItem.id);
+//   tasks.splice(taskIndex, 1, task);
+//   console.log(tasks);
+//   renderTasks();
+// }
 
-const filters = [];
+// function deleteTask(event, task) {
+//   const taskIndex = tasks.findIndex((taskItem) => task.id == taskItem.id);
+//   tasks.splice(taskIndex, 1);
+//   renderTasks();
+// }
 
-const tasks = [
-  {
-    id: 1,
-    title: "Item 1",
-    dueDate: today(),
-    isCompleted: true,
-    project: "Inbox",
-  },
-  {
-    id: 2,
-    title: "Item 2",
-    dueDate: "",
-    isCompleted: false,
-    project: "Inbox",
-  },
-  {
-    id: 3,
-    title: "Item 3",
-    dueDate: "",
-    isCompleted: false,
-    project: "Inbox",
-  },
-];
+// function renderTasks() {
+//   const taskList = document.querySelector("#tasks");
+//   Array.from(taskList.children).forEach((task) => task.remove());
 
-function editTask(event, task) {
-  const taskIndex = tasks.findIndex((taskItem) => task.id == taskItem.id);
-  tasks.splice(taskIndex, 1, task);
-  console.log(tasks);
-  renderTasks();
-}
+//   const filteredTasks = filters.reduce(
+//     (filteredTasks, fn) => fn(filteredTasks),
+//     tasks
+//   );
 
-function deleteTask(event, task) {
-  const taskIndex = tasks.findIndex((taskItem) => task.id == taskItem.id);
-  tasks.splice(taskIndex, 1);
-  renderTasks();
-}
+//   filteredTasks.forEach((task) => {
+//     taskList.append(new TaskCard(task, editTask, deleteTask).render());
+//   });
+// }
 
-function renderTasks() {
-  const taskList = document.querySelector("#tasks");
-  Array.from(taskList.children).forEach((task) => task.remove());
+// const tasksTodayFilter = document.querySelector("#filter-tasks-today");
+// tasksTodayFilter.addEventListener("click", (e) => {
+//   filters.splice(0);
+//   filters.push(filterByToday);
+//   renderTasks();
+// });
 
-  const filteredTasks = filters.reduce(
-    (filteredTasks, fn) => fn(filteredTasks),
-    tasks
-  );
+// const tasksInboxFilter = document.querySelector("#filter-tasks-inbox");
+// tasksInboxFilter.addEventListener("click", (e) => {
+//   filters.splice(0);
+//   filters.push(filterByProject("Inbox"));
+//   renderTasks();
+// });
 
-  filteredTasks.forEach((task) => {
-    taskList.append(new TaskCard(task, editTask, deleteTask).render());
-  });
-}
+// renderTasks();
+//
 
-const tasksTodayFilter = document.querySelector("#filter-tasks-today");
-tasksTodayFilter.addEventListener("click", (e) => {
-  filters.splice(0);
-  filters.push(filterByToday);
-  renderTasks();
+const inboxElement = document.querySelector("#filter-tasks-inbox");
+inboxElement.addEventListener("click", () => {
+  renderTasksByProject("#tasks", "Inbox");
 });
 
-const tasksInboxFilter = document.querySelector("#filter-tasks-inbox");
-tasksInboxFilter.addEventListener("click", (e) => {
-  filters.splice(0);
-  filters.push(filterByProject("Inbox"));
-  renderTasks();
+const todayElement = document.querySelector("#filter-tasks-today");
+todayElement.addEventListener("click", (e) => {
+  renderTasksByDate("#tasks", format(new Date(), "yyyy-MM-dd"));
 });
-
-renderTasks();
+initializeApp("#tasks");
