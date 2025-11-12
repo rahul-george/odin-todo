@@ -129,6 +129,7 @@ class App {
 
     init() {
         this.projectController.viewProjects();
+        this.quickFilterController.onClickToday();
     }
 }
 

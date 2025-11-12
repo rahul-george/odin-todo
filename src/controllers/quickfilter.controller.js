@@ -6,9 +6,11 @@ class QuickFilterController {
         this.quickFilterView.registerOnClickInbox(() =>
             this.mediator.publish("inbox:select")
         );
-        this.quickFilterView.registerOnClickToday(() =>
-            this.mediator.publish("today:select")
-        );
+        this.quickFilterView.registerOnClickToday(this.onClickToday.bind(this));
+    }
+
+    onClickToday() {
+        this.mediator.publish("today:select");
     }
 }
 
