@@ -3,12 +3,26 @@ import "./styles.css";
 
 // import { filterByToday, filterByProject } from "./filterMethods";
 
+import { Mediator } from "./services/mediator";
+
+import { ProjectModel } from "./models/project.model";
+import { TodoModel } from "./models/todo.model";
+
+import { ProjectView } from "./views/project.view";
+import { TodoView } from "./views/todo.view";
+import { QuickFilterView } from "./views/quickfilter.view";
+
+import { ProjectController } from "./controllers/project.controller";
+import { TodoController } from "./controllers/todo.controller";
+import { QuickFilterController } from "./controllers/quickfilter.controller";
+
 import {
-  initializeApp,
-  renderTasksByProject,
-  renderTasksByDate,
+    initializeApp,
+    renderTasksByProject,
+    renderTasksByDate,
 } from "./commands";
 import { format } from "date-fns";
+import { FileStorage } from "./storage";
 
 // function editTask(event, task) {
 //   const taskIndex = tasks.findIndex((taskItem) => task.id == taskItem.id);
@@ -54,13 +68,69 @@ import { format } from "date-fns";
 // renderTasks();
 //
 
-const inboxElement = document.querySelector("#filter-tasks-inbox");
-inboxElement.addEventListener("click", () => {
-  renderTasksByProject("#tasks", "Inbox");
+// const inboxElement = document.querySelector("#filter-tasks-inbox");
+// inboxElement.addEventListener("click", () => {
+//     renderTasksByProject("#tasks", "Inbox");
+// });
+
+// const todayElement = document.querySelector("#filter-tasks-today");
+// todayElement.addEventListener("click", (e) => {
+//     renderTasksByDate("#tasks", format(new Date(), "yyyy-MM-dd"));
+// });
+
+/*
+const createProjectButton = document.querySelector(".createProjectButton");
+const createProjectInput = document.querySelector("#projectCreateContainer");
+const closeProjectInput = document.querySelector("#closeProjectInput");
+const projectNameInput = document.querySelector("#projectNameInput");
+createProjectButton.addEventListener("click", (e) => {
+    createProjectInput.classList.remove("hidden");
+    createProjectButton.classList.add("hidden");
 });
 
-const todayElement = document.querySelector("#filter-tasks-today");
-todayElement.addEventListener("click", (e) => {
-  renderTasksByDate("#tasks", format(new Date(), "yyyy-MM-dd"));
+closeProjectInput.addEventListener("click", (e) => {
+    projectNameInput.value = "";
+    createProjectInput.classList.add("hidden");
+    createProjectButton.classList.remove("hidden");
 });
+
+projectNameInput.addEventListener("keydown", (e) => {
+    if (e.target.value === "") return;
+    if (e.key.toLowerCase() === "enter") {
+        console.log(e.target.value);
+        //fixme: Handle it
+        closeProjectInput.click();
+    }
+});
+
 initializeApp("#tasks");
+
+*/
+
+class App {
+    constructor() {
+        this.mediator = new Mediator();
+        this.quickFilterController = new QuickFilterController(
+            new QuickFilterView(),
+            this.mediator
+        );
+        this.projectController = new ProjectController(
+            new ProjectView(),
+            new ProjectModel(new FileStorage("projects")),
+            this.mediator
+        );
+
+        this.todoController = new TodoController(
+            new TodoView(),
+            new TodoModel(new FileStorage("tasks")),
+            this.mediator
+        );
+    }
+
+    init() {
+        this.projectController.viewProjects();
+    }
+}
+
+const app = new App();
+app.init();

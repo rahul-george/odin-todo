@@ -3,103 +3,104 @@ import { Checkbox } from "./checkbox/checkbox";
 import deleteIconSvg from "./deleteIcon.svg";
 
 export class TaskCard {
-  constructor(task, updateTask, deleteTask) {
-    /*
+    constructor(task, updateTask, deleteTask) {
+        /*
         @param: task is an object
         */
-    this.id = task.id;
-    this.title = task.title;
-    this.dueDate = task.dueDate;
-    this.isCompleted = task.isCompleted;
-    this.project = task.project;
-    this.onEditCallback = updateTask;
-    this.onDeleteCallback = deleteTask;
-  }
+        this.id = task.id;
+        this.title = task.title;
+        this.dueDate = task.dueDate;
+        this.isCompleted = task.isCompleted;
+        this.project = task.project;
+        this.onEditCallback = updateTask;
+        this.onDeleteCallback = deleteTask;
+    }
 
-  taskRepr() {
-    return {
-      id: this.id,
-      title: this.title,
-      dueDate: this.dueDate,
-      isCompleted: this.isCompleted,
-      project: this.project,
-    };
-  }
+    taskRepr() {
+        return {
+            id: this.id,
+            title: this.title,
+            dueDate: this.dueDate,
+            isCompleted: this.isCompleted,
+            project: this.project,
+        };
+    }
 
-  onEdit(e) {
-    this.onEditCallback(e, this.taskRepr());
-  }
+    onEdit(e) {
+        console.log("onEdit method");
+        this.onEditCallback(this.taskRepr());
+    }
 
-  onDelete(e) {
-    this.onDeleteCallback(this.id);
-  }
+    onDelete(e) {
+        this.onDeleteCallback(this.id);
+    }
 
-  render() {
-    const task_card_fragment = document.createDocumentFragment();
-    const task_card = document.createElement("div");
-    task_card.dataset.taskId = this.id;
-    task_card.classList.add("task");
-    task_card_fragment.appendChild(task_card);
+    render() {
+        const task_card_fragment = document.createDocumentFragment();
+        const task_card = document.createElement("div");
+        task_card.dataset.taskId = this.id;
+        task_card.classList.add("task");
+        task_card_fragment.appendChild(task_card);
 
-    task_card.appendChild(this.renderCheckbox());
-    task_card.appendChild(this.renderTitle());
-    task_card.appendChild(this.renderDate());
-    // task_card.appendChild(this.renderEditButton());
-    task_card.appendChild(this.renderDeleteButton());
-    return task_card_fragment;
-  }
+        task_card.appendChild(this.renderCheckbox());
+        task_card.appendChild(this.renderTitle());
+        task_card.appendChild(this.renderDate());
+        // task_card.appendChild(this.renderEditButton());
+        task_card.appendChild(this.renderDeleteButton());
+        return task_card_fragment;
+    }
 
-  renderCheckbox() {
-    const checkbox = new Checkbox(this.isCompleted, (e) => {
-      this.isCompleted = e.target.checked;
-      this.onEditCallback(this.taskRepr());
-    });
-    return checkbox.render();
-  }
+    renderCheckbox() {
+        const checkbox = new Checkbox(this.isCompleted, (e) => {
+            this.isCompleted = e.target.checked;
+            this.onEditCallback(this.taskRepr());
+        });
+        return checkbox.render();
+    }
 
-  renderTitle() {
-    const inputElement = document.createElement("input");
-    inputElement.type = "text";
-    inputElement.name = "title";
-    inputElement.id = "title";
-    inputElement.value = this.title;
-    inputElement.classList.add("task-title");
-    inputElement.addEventListener("change", (e) => {
-      this.title = e.target.value;
-      this.onEditCallback(this.taskRepr());
-    });
-    return inputElement;
-  }
+    renderTitle() {
+        const inputElement = document.createElement("input");
+        inputElement.type = "text";
+        inputElement.name = "title";
+        inputElement.id = "title";
+        inputElement.value = this.title;
+        inputElement.classList.add("task-title");
+        inputElement.addEventListener("change", (e) => {
+            this.title = e.target.value;
+            this.onEditCallback(this.taskRepr());
+        });
+        return inputElement;
+    }
 
-  renderDate() {
-    const inputElement = document.createElement("input");
-    inputElement.type = "date";
-    inputElement.name = "due-date";
-    inputElement.id = "due-date";
-    inputElement.value = this.dueDate;
-    inputElement.addEventListener("change", (e) => {
-      this.dueDate = e.target.value;
-      this.onEditCallback(this.taskRepr());
-    });
-    return inputElement;
-  }
+    renderDate() {
+        const inputElement = document.createElement("input");
+        inputElement.type = "date";
+        inputElement.name = "due-date";
+        inputElement.id = "due-date";
+        inputElement.value = this.dueDate;
+        inputElement.addEventListener("change", (e) => {
+            this.dueDate = e.target.value;
+            this.onEditCallback(this.taskRepr());
+        });
+        return inputElement;
+    }
 
-  renderEditButton() {
-    const inputElement = document.createElement("input");
-    inputElement.type = "button";
-    inputElement.name = "edit-task-button";
-    inputElement.id = "edit-task";
-    inputElement.value = "Edit";
-    inputElement.addEventListener("click", (e) => this.onEdit(e));
-    return inputElement;
-  }
+    renderEditButton() {
+        const inputElement = document.createElement("input");
+        inputElement.type = "button";
+        inputElement.name = "edit-task-button";
+        inputElement.id = "edit-task";
+        inputElement.value = "Edit";
+        inputElement.addEventListener("click", (e) => this.onEdit(e));
+        return inputElement;
+    }
 
-  renderDeleteButton() {
-    const inputElement = document.createElement("button");
-    inputElement.type = "button";
-    inputElement.classList.add("delete-button");
-    inputElement.name = "delete-task-button";
-    inputElement.innerHTML = `<svg fill="red" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    renderDeleteButton() {
+        const inputElement = document.createElement("button");
+        inputElement.type = "button";
+        inputElement.classList.add("delete-button");
+        inputElement.name = "delete-task-button";
+        inputElement.innerHTML = `<svg fill="red" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 	 width="40px" height="40px" viewBox="0 0 372.693 372.693"
 	 xml:space="preserve">
 <g>
@@ -114,7 +115,7 @@ export class TaskCard {
 		v-139.59c0-9.196,7.47-16.693,16.67-16.693c9.199,0,16.692,7.497,16.692,16.693V306.316z"/>
 </g>
 </svg>`;
-    inputElement.addEventListener("click", (e) => this.onDelete(e));
-    return inputElement;
-  }
+        inputElement.addEventListener("click", (e) => this.onDelete(e));
+        return inputElement;
+    }
 }

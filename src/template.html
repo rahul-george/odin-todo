@@ -31,11 +31,32 @@
             </section>
             <label for="projects">Projects</label>
             <section class="task-action-group">
-                <div id="projects">
-                    <button type="button" class="action-buttons">Home</button>
-                    <button type="button" class="action-buttons">
-                        Groceries
+                <div id="projects"></div>
+                <div>
+                    <button class="createProjectButton">
+                        + Create new Project
                     </button>
+                    <div id="projectCreateContainer" class="hidden">
+                        <span class="project-create">
+                            <label
+                                id="closeProjectLabel"
+                                for="closeProjectInput"
+                            >
+                                <img
+                                    src="./components/closeButton.svg"
+                                    height="20px"
+                                />
+                            </label>
+                            <input type="button" id="closeProjectInput" />
+                            <input
+                                id="projectNameInput"
+                                type="text"
+                                minlength="1"
+                                maxlength="20"
+                                placeholder="Project Name + [Enter]"
+                            />
+                        </span>
+                    </div>
                 </div>
             </section>
         </nav>

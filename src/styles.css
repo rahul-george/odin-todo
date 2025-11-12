@@ -1,52 +1,93 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1rem;
 }
 
 body {
-  display: grid;
-  grid-template-columns: 100px auto;
+    display: grid;
+    grid-template-columns: 100px auto;
 }
 
 header {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 1;
-  grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 
 nav {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 
 main {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 2;
-  grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
 }
 
 .task-action-group {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 0.1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.1rem;
 }
 
 .action-buttons {
-  appearance: none;
-  border: none;
-  padding: 0.2rem;
-  background-color: white;
-  text-align: start;
-  border-radius: 0.2rem;
+    appearance: none;
+    border: none;
+    padding: 0.2rem;
+    background-color: white;
+    text-align: start;
+    border-radius: 0.2rem;
 }
 
 .action-buttons:hover {
-  background-color: #ffa79674;
-  color: #cd1c18;
+    background-color: #ffa79674;
+    color: #cd1c18;
+}
+
+.hidden {
+    display: none;
+}
+
+.project-create {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100px;
+}
+
+.project-create img {
+    width: 1em;
+    height: 1em;
+}
+
+.project-create input[type="button"] {
+    visibility: hidden;
+}
+
+.project-create input[type="text"] {
+    width: calc(100px - 2em);
+}
+
+.createProjectButton {
+    appearance: none;
+    border: none;
+    padding: 0.2rem;
+    background-color: white;
+    text-align: start;
+    border-radius: 0.2rem;
+}
+
+.createProjectButton:hover {
+    background-color: #ffa79674;
+    color: #cd1c18;
+}
+
+label#closeProjectLabel:hover {
+    cursor: pointer;
 }
