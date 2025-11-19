@@ -91,7 +91,7 @@ class TodoCardInput {
         const submitButton = document.createElement("input");
         submitButton.type = "submit";
         submitButton.value = "submit";
-        submitButton.addEventListener("click", (e) => {
+        submitButton.addEventListener("click", () => {
             this.onSubmit(this.task);
             this.reset();
         });

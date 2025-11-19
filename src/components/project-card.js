@@ -12,7 +12,7 @@ class ProjectCard {
     projectButton.classList.add("project-card");
     projectButton.textContent = this.title;
 
-    projectButton.addEventListener("click", (e) =>
+    projectButton.addEventListener("click", () =>
       this.onProjectClick(this.title),
     );
     return projectButton;
