@@ -25,6 +25,7 @@ class TodoController {
         // register handlers
         this.todoView.registerOnDeleteHandler(this.deleteTask.bind(this));
         this.todoView.registerOnUpdateHandler(this.updateTask.bind(this));
+        this.todoView.registerOnCreateHandler(this.createTask.bind(this));
     }
 
     viewTasksInProject(projectName) {
@@ -52,7 +53,10 @@ class TodoController {
         this.todoModel.updateTask(task);
     }
 
-    createTask() {}
+    createTask(task) {
+        task.id = crypto.randomUUID();
+        this.todoModel.createTask(task);
+    }
 }
 
 export { TodoController };
