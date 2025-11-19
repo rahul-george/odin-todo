@@ -1,6 +1,6 @@
 import "./task-card.css";
 import { Checkbox } from "./checkbox/checkbox";
-import deleteIconSvg from "./deleteIcon.svg";
+// import deleteIconSvg from "./deleteIcon.svg";
 
 export class TaskCard {
     constructor(task, updateTask, deleteTask) {
@@ -26,12 +26,12 @@ export class TaskCard {
         };
     }
 
-    onEdit(e) {
+    onEdit() {
         console.log("onEdit method");
         this.onEditCallback(this.taskRepr());
     }
 
-    onDelete(e) {
+    onDelete() {
         this.onDeleteCallback(this.id);
     }
 
