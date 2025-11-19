@@ -30,3 +30,9 @@ I choose MVC pattern as the architecture for this application.
 
 - src/services/mediator.js: Sometimes we need to interact between two controllers like when project is clicked, update the list of tasks
     mediator stores the events and the listeners. When an event is published, it notifies all the listeners. 
+
+
+## References
+ - https://lakeebs.github.io/taskr/
+ - https://bscottnz.github.io/todo/
+ - https://gda0.github.io/to-do-list/
