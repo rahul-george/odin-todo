@@ -1,3 +1,5 @@
+import "../components/project-card.css";
+
 class ProjectView {
     constructor() {
         this.projectContainer = document.querySelector("#projects");
@@ -14,8 +16,8 @@ class ProjectView {
     }
 
     renderProject(project) {
-      // <project name> <todo count>
-      // On hover: <project name> <more icon button>
+        // <project name> <todo count>
+        // On hover: <project name> <more icon button>
         const projectButton = document.createElement("button");
         projectButton.classList.add("project-card");
         projectButton.textContent = project.title;
