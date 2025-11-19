@@ -1,10 +1,11 @@
 import { format } from "date-fns";
 
 class TodoController {
-    constructor(todoView, todoModel, mediator) {
+    constructor(todoView, todoModel, mediator, filterHelper) {
         this.todoView = todoView;
         this.todoModel = todoModel;
         this.mediator = mediator;
+        this.filterHelper = filterHelper;
 
         // If binding is not done, then instance attributes cannot be accessed when callback is called.
         this.mediator.subscribe(
@@ -31,17 +32,16 @@ class TodoController {
     viewTasksInProject(projectName) {
         // Update the Todo View
         const tasks = this.todoModel.readTaskByProjectName(projectName);
-        this.todoView.render(tasks);
+        this.todoView.render(tasks, { activeProject: projectName });
     }
     viewTasksInInbox() {
         this.viewTasksInProject("Inbox");
     }
 
     viewTasksDueToday() {
-        const tasks = this.todoModel.readTaskByDueDate(
-            format(new Date(), "yyyy-MM-dd")
-        );
-        this.todoView.render(tasks);
+        const dueDate = format(new Date(), "yyyy-MM-dd");
+        const tasks = this.todoModel.readTaskByDueDate(dueDate);
+        this.todoView.render(tasks, { dueDate: dueDate });
     }
 
     deleteTask(taskId) {
@@ -56,6 +56,14 @@ class TodoController {
     createTask(task) {
         task.id = crypto.randomUUID();
         this.todoModel.createTask(task);
+
+        if (this.filterHelper.todayFilter) {
+            this.viewTasksDueToday();
+        }
+
+        if (this.filterHelper.activeProject) {
+            this.viewTasksInProject(this.filterHelper.activeProject);
+        }
     }
 }
 

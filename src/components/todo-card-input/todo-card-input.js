@@ -64,6 +64,9 @@ class TodoCardInput {
         dueDateSelect.addEventListener("change", (e) => {
             this.task.dueDate = e.target.value;
         });
+        if (this.task?.dueDate) {
+            dueDateSelect.value = this.task.dueDate;
+        }
         todoInputCard.appendChild(dueDateSelect);
 
         // Priority

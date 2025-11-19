@@ -13,12 +13,19 @@ class TodoView {
         this.taskContainer.innerHTML = "";
     }
 
-    render(tasks) {
+    render(tasks, { dueDate = null, activeProject = null }) {
+        const taskInput = {};
+        if (activeProject) {
+            taskInput.project = activeProject;
+        }
+        if (dueDate) {
+            taskInput.dueDate = dueDate;
+        }
         this.clearTasks();
         const tasksFragment = document.createDocumentFragment();
         // Insert the create task card
         tasksFragment.appendChild(
-            new TodoCardInput(null, this.onTaskCreate).render()
+            new TodoCardInput(taskInput, this.onTaskCreate).render()
         );
         tasks.forEach((task) => {
             tasksFragment.appendChild(this.renderTask(task));

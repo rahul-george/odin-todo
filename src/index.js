@@ -23,6 +23,7 @@ import {
 } from "./commands";
 import { format } from "date-fns";
 import { FileStorage } from "./storage";
+import { FilterHelper } from "./services/filterhelper";
 
 // function editTask(event, task) {
 //   const taskIndex = tasks.findIndex((taskItem) => task.id == taskItem.id);
@@ -110,6 +111,7 @@ initializeApp("#tasks");
 class App {
     constructor() {
         this.mediator = new Mediator();
+        this.filterHelper = new FilterHelper(this.mediator);
         this.quickFilterController = new QuickFilterController(
             new QuickFilterView(),
             this.mediator
@@ -123,7 +125,8 @@ class App {
         this.todoController = new TodoController(
             new TodoView(),
             new TodoModel(new FileStorage("tasks")),
-            this.mediator
+            this.mediator, 
+            this.filterHelper
         );
     }
 
