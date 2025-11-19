@@ -11,7 +11,7 @@ class TodoModel {
     findTaskIndex(taskId) {
         const taskIndex = this.tasks.findIndex((task) => task.id === taskId);
         if (taskIndex === -1) {
-            throw new Error(`Could not find the task with id ${task.id}`);
+            throw new Error(`Could not find the task with id ${taskId}`);
         }
         return taskIndex;
     }
